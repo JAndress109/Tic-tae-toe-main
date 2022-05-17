@@ -25,6 +25,8 @@ def is_registry_open() -> bool:
     except:
         return False
 
+        
+
 
 def register_user(name: str) -> str:
     """
@@ -69,11 +71,31 @@ def decide_move(board: list, player_id: str) -> [int, int]:
     """
     Decides next move to make.
     """
-    row = randint(0, 2)
-    column = randint(0, 2)
-    return [row, column]
+    rival = '0'
+    if player_id is '0':
+        rival = 'X'
 
+# Estrategia Ofensiva
 
+    if board [0][0] == player_id and board [0][1] == player_id and board[0,2] == '-':
+        return [0,2]
+    if board [1][0] == player_id and board [1][1] == player_id and board[1,2] == '-':
+        return [1,2]
+    if board [2][0] == player_id and board [2][1] == player_id and board[2,2] == '-':
+        return [2,2]
+    if board [0][1] == player_id and board [0][2] == player_id and board[0,0] == '-':
+        return [0,0]
+    if board [0][2] == player_id and board [0][0] == player_id and board[0,1] == '-':
+        return [0,1]
+    if board [1][1] == player_id and board [1][2] == player_id and board[1,1] == '-':
+        return [1,1]
+    if board [1][2] == player_id and board [1][1] == player_id and board[1,0] == '-':
+        return [1,0]
+    if board [1][0] == player_id and board [1][1] == player_id and board[1,2] == '-':
+        return [1,2]
+
+   
+    
 def validate_move(board: list, move: list) -> bool:
     """
     Checks if the desired next move hits an empty position.
